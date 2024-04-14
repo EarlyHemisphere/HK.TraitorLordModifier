@@ -1,6 +1,8 @@
+using HutongGames.PlayMaker;
+using HutongGames.PlayMaker.Actions;
 using Modding;
-using UnityEngine;
 using SFCore.Utils;
+using UnityEngine;
 
 namespace TraitorLordModifier {
     public class TraitorLordModifier : Mod, ITogglableMod {
@@ -34,13 +36,17 @@ namespace TraitorLordModifier {
         }
 
         private void ModifyFsm(PlayMakerFSM fsm) {
-            fsm.GetState("Waves").ChangeTransition("FINISHED", "Slam End");
+            Modding.Logger.Log("ModifyFsm")
+            fsm.GetAction<CheckTargetDirection>("Repeat Pos Check", 0).rightEvent = new FsmEvent("");
+            fsm.GetAction<CheckTargetDirection>("Repeat Pos Check", 0).leftEvent = new FsmEvent("");
+            Modding.Logger.Log("Done ModifyFsm")
         }
 
         public void Unload() {
             GameObject mantis = GameObject.Find("Mantis Traitor Lord");
             if (mantis != null) {
-                mantis.LocateMyFSM("Mantis").GetState("Waves").ChangeTransition("FINISHED", "Repeat Pos Check");
+                mantis.LocateMyFSM("Mantis").GetAction<CheckTargetDirection>("Repeat Pos Check", 0).rightEvent = new FsmEvent("R");
+                mantis.LocateMyFSM("Mantis").GetAction<CheckTargetDirection>("Repeat Pos Check", 0).leftEvent = new FsmEvent("L");
             }
         }
     }
