@@ -36,10 +36,8 @@ namespace TraitorLordModifier {
         }
 
         private void ModifyFsm(PlayMakerFSM fsm) {
-            Modding.Logger.Log("ModifyFsm")
             fsm.GetAction<CheckTargetDirection>("Repeat Pos Check", 0).rightEvent = new FsmEvent("");
             fsm.GetAction<CheckTargetDirection>("Repeat Pos Check", 0).leftEvent = new FsmEvent("");
-            Modding.Logger.Log("Done ModifyFsm")
         }
 
         public void Unload() {
