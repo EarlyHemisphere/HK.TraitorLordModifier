@@ -45,7 +45,7 @@ namespace TraitorLordModifier {
                     ),
                     new HorizontalOption(
                         name: "Max Attacks Between Slams",
-                        description: "Forces four attacks to be used in between slam attacks.",
+                        description: "Forces five attacks to be used in between slam attacks.",
                         values: new [] {"true", "false"},
                         applySetting: val => {
                             localSettings.maxAttacksBetweenSlams = val == 0;
